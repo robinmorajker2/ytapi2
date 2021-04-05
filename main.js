@@ -26,7 +26,7 @@ function handleAuthClick() { gapi.auth2.getAuthInstance().signIn();}    // Handl
 function handleSignoutClick() {  gapi.auth2.getAuthInstance().signOut();}     // Handle logout
 function showChannelData(data) {  const channelData = document.getElementById('channel-data');  channelData.innerHTML = data;}    // Display channel data
 
-function getChannel(channel) {gapi.client.youtube.channels.list({part: 'snippet,contentDetails,statistics', id: channel})          // Get channel from API
+function getChannel(channel) {gapi.client.youtube.channels.list({part: 'snippet,contentDetails,statistics', id: [channel]})          // Get channel from API
                                                           .then(response => { console.log(response);
                                                                               const channel = response.items[0];
                                                                               const output = `
