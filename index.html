@@ -5,11 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ 
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <style>
     #content,
-    #authorize-button,
+    #authorize-button {display: inline},
     #signout-button {
       display: none
     }
@@ -30,8 +33,8 @@
   <section>
     <div class="container">
       <p>Log In With Google</p>
-      <button class="btn red" id="authorize-button">Log In</button>
-      <button class="btn red" id="signout-button">Log Out</button>
+      <button class="btn waves-effect waves-light red" id="authorize-button">Log In</button>
+      <button class="waves-effect waves-light btn red" id="signout-button">Log Out</button>
       <br>
       <div id="content">
         <div class="row">
@@ -50,7 +53,9 @@
     </div>
   </section>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+       
+       </script>
   <script src="main.js"></script>
   <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
   </script>
