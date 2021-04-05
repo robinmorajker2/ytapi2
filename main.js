@@ -1,4 +1,5 @@
 const CLIENT_ID = '72138976933-o1jqigi2blfgnn48rstrq2g19rokaj6m.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyCVLyNM4GrIi82AwkZO0oRZo7zqavuJevk'
 const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'];
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 const authorizeButton = document.getElementById('authorize-button');
@@ -12,7 +13,7 @@ const defaultChannel = 'techguyweb';
 channelForm.addEventListener('submit', e => {  e.preventDefault();  const channel = channelInput.value;  getChannel(channel);});      // Form submit and change channel
 function handleClientLoad() {  gapi.load('client:auth2', initClient);}            // Load auth2 library
 
-function initClient() {gapi.client.init({discoveryDocs: DISCOVERY_DOCS,  clientId: CLIENT_ID,  scope: SCOPES})            // Init API client library and set up sign in listeners
+function initClient() {gapi.client.init({'apiKey': API_KEY, discoveryDocs: DISCOVERY_DOCS,  clientId: CLIENT_ID,  scope: SCOPES})            // Init API client library and set up sign in listeners
                                   .then(() => { gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);      // Listen for sign in state changes
                                                 updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());      // Handle initial sign in state
                                                 authorizeButton.onclick = handleAuthClick;
