@@ -29,7 +29,7 @@ function showChannelData(data) {  const channelData = document.getElementById('c
 
 function getChannel(channel) {gapi.client.youtube.channels.list({part: 'snippet,contentDetails,statistics', id: channel})          // Get channel from API
                                                           .then(response => { console.log(response);
-                                                                              const channel = response.items[0];
+                                                                              const channel = response.result.items[0];
                                                                               const output = `
                                                                                 <ul class="collection">
                                                                                   <li class="collection-item">Title: ${channel.snippet.title}</li>
