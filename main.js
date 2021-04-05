@@ -83,7 +83,7 @@ function getChannel(channel) {
   gapi.client.youtube.channels
     .list({
       part: 'snippet,contentDetails,statistics',
-      forUsername: channel
+      id: channel
     })
     .then(response => {
       console.log(response);
