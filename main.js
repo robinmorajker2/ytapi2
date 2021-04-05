@@ -25,7 +25,9 @@ channelForm.addEventListener('submit', e => {
 
 // Load auth2 library
 function handleClientLoad() {
-  gapi.load('client:auth2', initClient);
+  gapi.load("client:auth2", function() {
+    gapi.auth2.init({client_id: CLIENT_ID});
+  });
 }
 
 // Init API client library and set up sign in listeners
@@ -64,7 +66,10 @@ function updateSigninStatus(isSignedIn) {
 
 // Handle login
 function handleAuthClick() {
-  gapi.auth2.getAuthInstance().signIn();
+  return gapi.auth2.getAuthInstance()
+      .signIn({scope: "https://www.googleapis.com/auth/youtube.readonly"})
+      .then(function() { console.log("Sign-in successful"); },
+            function(err) { console.error("Error signing in", err); });
 }
 
 // Handle logout
@@ -83,11 +88,11 @@ function getChannel(channel) {
   gapi.client.youtube.channels
     .list({
       part: 'snippet,contentDetails,statistics',
-      id: channel
+      id: [channel]
     })
     .then(response => {
       console.log(response);
-      const channel = response.result.items[0];
+      const channel = response.items[0];
 
       const output = `
         <ul class="collection">
