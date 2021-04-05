@@ -89,7 +89,7 @@ function getChannel(channel) {
     .list({
       part: 'snippet,contentDetails,statistics',
       id: [channel],
-      key: [CLIENT_ID]
+      key: '72138976933-o1jqigi2blfgnn48rstrq2g19rokaj6m.apps.googleusercontent.com'
     })
     .then(response => {
       console.log(response);
