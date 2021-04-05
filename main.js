@@ -1,8 +1,5 @@
-// Options
 const CLIENT_ID = '72138976933-o1jqigi2blfgnn48rstrq2g19rokaj6m.apps.googleusercontent.com';
-const DISCOVERY_DOCS = [
-  'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'
-];
+const DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'];
 const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 
 const authorizeButton = document.getElementById('authorize-button');
@@ -17,18 +14,11 @@ const defaultChannel = 'techguyweb';
 // Form submit and change channel
 channelForm.addEventListener('submit', e => {
   e.preventDefault();
-
   const channel = channelInput.value;
-
   getChannel(channel);
 });
 
-// Load auth2 library
-function handleClientLoad() {
-  gapi.load("client:auth2", function() {
-    gapi.auth2.init({client_id: CLIENT_ID});
-  });
-}
+function handleClientLoad() {  gapi.load('client:auth2', initClient);}            // Load auth2 library
 
 // Init API client library and set up sign in listeners
 function initClient() {
@@ -66,10 +56,7 @@ function updateSigninStatus(isSignedIn) {
 
 // Handle login
 function handleAuthClick() {
-  return gapi.auth2.getAuthInstance()
-      .signIn({scope: "https://www.googleapis.com/auth/youtube.readonly"})
-      .then(function() { console.log("Sign-in successful"); },
-            function(err) { console.error("Error signing in", err); });
+  gapi.auth2.getAuthInstance().signIn();
 }
 
 // Handle logout
@@ -88,12 +75,11 @@ function getChannel(channel) {
   gapi.client.youtube.channels
     .list({
       part: 'snippet,contentDetails,statistics',
-      id: [channel],
-      key: '72138976933-o1jqigi2blfgnn48rstrq2g19rokaj6m.apps.googleusercontent.com'
+      forUsername: channel
     })
     .then(response => {
       console.log(response);
-      const channel = response.items[0];
+      const channel = response.result.items[0];
 
       const output = `
         <ul class="collection">
